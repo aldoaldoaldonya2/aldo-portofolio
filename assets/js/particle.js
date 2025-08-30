@@ -2,25 +2,28 @@
 const canvas = document.getElementById('particleCanvas');
 const ctx = canvas.getContext('2d');
 
-// Function to resize canvas
+// Resize canvas dengan DPR
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // reset transform
+    ctx.scale(dpr, dpr); // biar koordinat sesuai ukuran CSS px
 }
 resizeCanvas();
 
 // Particle properties
 let particles = [];
 let particleCount = window.innerWidth <= 768 ? 30 : 70;
-const particleColor = 'rgba(173, 216, 230, 0.6)'; // light blue with transparency
-const connectionColor = 'rgba(173, 216, 230, 0.2)';
+const particleColor = 'rgba(173, 216, 230, 0.8)';
+const connectionColor = 'rgba(173, 216, 230, 0.3)';
 const connectionDistance = 150;
 
 // Particle class
 class Particle {
     constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * window.innerWidth;
+        this.y = Math.random() * window.innerHeight;
         this.size = Math.random() * 3 + 1;
         this.speedX = Math.random() * 2 - 1;
         this.speedY = Math.random() * 2 - 1;
@@ -30,13 +33,8 @@ class Particle {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        // Bounce off the walls
-        if (this.x > canvas.width || this.x < 0) {
-            this.speedX = -this.speedX;
-        }
-        if (this.y > canvas.height || this.y < 0) {
-            this.speedY = -this.speedY;
-        }
+        if (this.x > window.innerWidth || this.x < 0) this.speedX = -this.speedX;
+        if (this.y > window.innerHeight || this.y < 0) this.speedY = -this.speedY;
     }
 
     draw() {
@@ -47,16 +45,14 @@ class Particle {
     }
 }
 
-// Create particles
 function createParticles() {
-    particles = []; // reset array
-    particleCount = window.innerWidth <= 768 ? 30 : 70; // update count
+    particles = [];
+    particleCount = window.innerWidth <= 768 ? 30 : 70;
     for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
     }
 }
 
-// Connect particles with lines when they're close
 function connectParticles() {
     for (let i = 0; i < particles.length; i++) {
         for (let j = i; j < particles.length; j++) {
@@ -76,26 +72,24 @@ function connectParticles() {
     }
 }
 
-// Animation loop
 function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
+    for (let p of particles) {
+        p.update();
+        p.draw();
     }
 
     connectParticles();
-
     requestAnimationFrame(animate);
 }
 
-// Handle window resize
-window.addEventListener('resize', function () {
+// Resize listener
+window.addEventListener('resize', () => {
     resizeCanvas();
-    createParticles(); // regenerate particles sesuai ukuran baru
+    createParticles();
 });
 
-// Initialize and start animation
+// Init
 createParticles();
 animate();
