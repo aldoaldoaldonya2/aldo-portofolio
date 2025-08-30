@@ -1,0 +1,30 @@
+.loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    .curtain {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: #111;
+    }
+
+    .curtain.left { left: 0; }
+    .curtain.right { right: 0; }
+
+    .loading-text {
+      font-size: 24px;
+      margin-top: 20px;
+    }

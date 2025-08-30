@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta  name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio | Aldo</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="./assets/css/style-2.css">
     <!-- Tailwind CSS -->
     <link href="./assets/css/style.css" rel="stylesheet">
     <!-- CDN Unicons -->
@@ -17,23 +19,116 @@
     <link rel="shortcut icon" href="./assets/images/Ald-light.png" media="(prefers-color-scheme: light)" type="image/x-icon">
     <!-- Custom CSS -->
     <style>
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
             margin: 0;
-            overflow: hidden;
+            padding: 0;
+            overflow-x: hidden;
             background-color: #0a192f; 
             font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            height: 1000px;
+            scroll-behavior: smooth;
         }
         canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1; 
             display: block;
+        }
+        .section-title {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background: #64ffda;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #64ffda;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
         }
     </style>
 </head>
 <body class="bg-gray-900 font-poppins antialiased">
-    <button class="px-6 py-3 bg-red-500 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-600">
-    click me
-  </button>
+    <div class="loader">
+        <div class="loading-icon">⏳</div>
+        <div class="loading-text">Loading...</div>
+        <div class="curtain left"></div>
+        <div class="curtain right"></div>
+    </div>
     <canvas id="particleCanvas"></canvas>
 
+    <!-- Nav -->
+    <nav class="fixed w-full py-5 px-6 md:px-12 lg:px-24 z-50 bg-navy-900 bg-opacity-90 backdrop-filter backdrop-blur-sm">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Ald.</a>
+            
+            <div class="hidden md:flex space-x-10 text-gray-300">
+                <a href="#about" class="nav-link text-lightest-slate">About</a>
+                <a href="#experience" class="nav-link text-lightest-slate">Experience</a>
+                <a href="#projects" class="nav-link text-lightest-slate">Projects</a>
+                <a href="#contact" class="nav-link text-lightest-slate">Contact</a>
+            </div>
+            
+            <a href="./assets/resume.pdf" target="_blank" class="max-md:hidden px-4 py-2 border border-blue-300 text-blue-300 rounded-full hover:bg-blue-500 hover:bg-opacity-30 transition-all duration-200">
+                Download CV
+            </a>
+            
+            <button class="md:hidden text-gray-300">
+                <i class="uil uil-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-20 px-6 md:px-12 lg:px-24">
+        <div class="container mx-auto">
+            <div class="max-w-2xl">
+                <p class="text-green-300 mb-5 animate-fade-in opacity-0">Hi, my name is</p>
+                <h1 class="text-5xl md:text-7xl font-bold text-lightest-slate mb-5 animate-fade-in opacity-0 delay-100">Aldo Pratama.</h1>
+                <h2 class="text-4xl md:text-6xl font-bold text-slate-300 mb-6 animate-fade-in opacity-0 delay-200">I build things for the web.</h2>
+                <p class="text-slate-400 text-lg mb-10 max-w-lg animate-fade-in opacity-0 delay-300">
+                    I'm a software developer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I'm focused on building accessible, human-centered products.
+                </p>
+                <a href="#projects" class="px-6 py-4 border border-green-300 text-green-300 rounded hover:bg-green-300 hover:bg-opacity-10 transition-all duration-300 inline-block animate-fade-in opacity-0 delay-400">
+                    Check out my projects!
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- External JS -->
     <script src="assets/js/particle.js"></script>
+    <script src="assets/js/gsap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </body>
 </html>
