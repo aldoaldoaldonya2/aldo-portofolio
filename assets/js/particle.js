@@ -8,7 +8,7 @@
         
         // Particle properties
         const particles = [];
-        const particleCount = 100;
+        let particleCount = window.innerWidth <= 768 ? 30 : 70;
         const particleColor = 'rgba(173, 216, 230, 0.6)'; // light blue with transparency
         const connectionColor = 'rgba(173, 216, 230, 0.2)';
         const connectionDistance = 150;
