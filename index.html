@@ -47,23 +47,40 @@
   </nav>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" class="mobile-menu">
-    <a href="#about" class="nav-link text-lightest-slate">About</a>
-    <a href="#experience" class="nav-link text-lightest-slate">Experience</a>
-    <a href="#projects" class="nav-link text-lightest-slate">Projects</a>
-    <a href="#contact" class="nav-link text-lightest-slate">Contact</a>
-    <a href="https://drive.google.com/file/d/1So1p5pGKu-Wx8kDAU75azDRqjiiWmgzX/view?usp=sharing" target="_blank" class="mt-4 px-4 py-2 border border-blue-300 text-blue-300 rounded-full hover:bg-blue-500 hover:bg-opacity-30 transition-all duration-200 inline-block">
+  <div id="mobile-menu" class="fixed inset-0 bg-gray-900 bg-opacity-95 z-50 flex flex-col items-center justify-center space-y-8 transform translate-x-full transition-transform duration-500 ease-in-out">
+    <button id="mobile-menu-close" class="absolute top-5 right-5 text-gray-300">
+      <i class="uil uil-multiply text-3xl"></i>
+    </button>
+    <a href="#about" class="nav-link text-2xl text-white opacity-0 transition-opacity duration-500 delay-100">About</a>
+    <a href="#experience" class="nav-link text-2xl text-white opacity-0 transition-opacity duration-500 delay-200">Experience</a>
+    <a href="#projects" class="nav-link text-2xl text-white opacity-0 transition-opacity duration-500 delay-300">Projects</a>
+    <a href="#contact" class="nav-link text-2xl text-white opacity-0 transition-opacity duration-500 delay-400">Contact</a>
+    <a href="https://drive.google.com/file/d/1So1p5pGKu-Wx8kDAU75azDRqjiiWmgzX/view?usp=sharing" target="_blank" class="nav-link text-xl mt-4 px-6 py-3 border border-blue-400 text-blue-400 rounded-full opacity-0 transition-opacity duration-500 delay-500 hover:bg-blue-500 hover:bg-opacity-30">
       Download CV
     </a>
   </div>
+
+
+  <!-- Main Content -->
   <div id="wrapper" class="scroll-section">
     <div id="content">
       <!-- Hero Section -->
-      <section id="hero" class="min-h-screen flex items-center pt-20 px-6 md:px-12 lg:px-24" data-speed="0.85">
-        <div class="container mx-auto">
-          <div class="max-w-2xl">
+      <section id="hero" class="min-h-screen flex items-center pt-20 px-6 md:px-12 lg:px-24" data-speed="0.9">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          
+          <!-- Right (Photo Frame) - tampil di atas saat mobile -->
+          <div class="flex justify-center md:justify-end order-1 md:order-2">
+            <div class="relative w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-80 rounded-full overflow-hidden border-4 border-blue-600 shadow-xl">
+              <img src="./assets/images/hero.jpg" alt="Aldo's Photo" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <!-- Left (Text) -->
+          <div class="max-w-2xl order-2 md:order-1">
             <p class="text-white bg-blue-700 rounded-full px-3 py-2 w-max font-medium mb-5 animate-fade-in">Hello, I'm</p>
-            <h1 class="text-5xl md:text-7xl font-bold text-lightest-slate mb-5 animate-fade-in delay-100">Aldo <span class="text-blue-600">Rizzqullah.</span></h1>
+            <h1 class="text-5xl md:text-7xl font-bold text-lightest-slate mb-5 animate-fade-in delay-100">
+              Aldo <span class="text-blue-600">Rizzqullah.</span>
+            </h1>
             <p class="text-slate-400 text-lg mb-10 max-w-lg animate-fade-in delay-300">
               A passionate student exploring the world of web development and AI, eager to craft innovative and user-centric digital experiences.
             </p>
@@ -76,8 +93,11 @@
               </a>
             </div>
           </div>
+
         </div>
       </section>
+
+
       
       <!-- About Section -->
       <section id="about" class="max-w-6xl mx-auto px-6 py-20" data-speed="1">
@@ -315,10 +335,35 @@
         <!-- Title -->
         <div class="text-center mb-12">
           <h2 class="text-3xl md:text-4xl font-bold text-white">Get In Touch</h2>
-          <p class="mt-2 text-gray-400">Feel free to reach out for collaborations or just a friendly hello</p>
+          <p class="mt-2 text-gray-400">Feel free to reach out for collaborations or just say a hello.</p>
         </div>
 
-        <div class="bg-gray-800 rounded-lg p-8 shadow-lg">
+        <!-- Wrapper -->
+        <div class="bg-gray-800 rounded-lg p-8 shadow-lg grid grid-cols-1 md:grid-cols-2 gap-10">
+          
+          <!-- Left (Contact Info) -->
+          <div class="space-y-6 text-gray-300">
+            <h3 class="text-xl font-semibold text-white">Contact Information</h3>
+            <p>You can reach me via the following channels:</p>
+            <div class="space-y-3">
+              <p><span class="font-medium text-white">📍 Address:</span> Jember, Indonesia</p>
+              <p><span class="font-medium text-white">📧 Email:</span> echo.alfasol@gmail.com</p>
+              <p><span class="font-medium text-white">📱 Phone:</span> +62 852-2034-3725</p>
+            </div>
+            <div class="flex space-x-4">
+              <a href="https://github.com/aldoaldoaldonya2" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                <i class="uil uil-github-alt text-2xl"></i>
+              </a>
+              <a href="https://www.instagram.com/alfoooru" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                <i class="uil uil-instagram text-2xl"></i>
+              </a>
+              <a href="#" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                <i class="uil uil-linkedin-alt text-2xl"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right (Form) -->
           <form class="space-y-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -342,8 +387,10 @@
               Send Message
             </button>
           </form>
+
         </div>
       </section>
+
 
       <!-- Footer -->
       <footer class="bg-gray-900 py-12 px-6 md:px-12 lg:px-24" data-speed="1">

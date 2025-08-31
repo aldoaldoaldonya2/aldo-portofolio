@@ -1,8 +1,33 @@
 
     // Mobile menu toggle
-    document.getElementById('mobile-menu-button').addEventListener('click', function() {
-      const mobileMenu = document.getElementById('mobile-menu');
-      mobileMenu.classList.toggle('open');
+    const menuButton = document.getElementById('mobile-menu-button');
+    const closeButton = document.getElementById('mobile-menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinks = mobileMenu.querySelectorAll('.nav-link');
+
+    // Toggle open/close
+    menuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('translate-x-full');
+        mobileMenu.classList.toggle('translate-x-0');
+        
+        navLinks.forEach((link, index) => {
+        setTimeout(() => link.classList.toggle('opacity-0'), index * 100);
+        });
+    });
+
+    closeButton.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+        mobileMenu.classList.remove('translate-x-0');
+        navLinks.forEach(link => link.classList.add('opacity-0'));
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+        mobileMenu.classList.add('translate-x-full');
+        mobileMenu.classList.remove('translate-x-0');
+
+        navLinks.forEach(l => l.classList.add('opacity-0'));
+        });
     });
 
     // Filter functionality
@@ -12,10 +37,8 @@
       
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-          // Remove active class from all buttons
           filterButtons.forEach(btn => btn.classList.remove('active'));
           
-          // Add active class to clicked button
           button.classList.add('active');
           
           const filterValue = button.getAttribute('data-filter');
