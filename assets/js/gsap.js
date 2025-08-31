@@ -8,3 +8,4 @@ window.addEventListener("load", () => {
     .to(".desc", { opacity: 1, y: 0 }, "-=0.6")
     .to(".buttons a", { opacity: 1, y: 0, stagger: 0.1 }, "-=1.5");
 });
+
