@@ -1,21 +1,10 @@
 window.addEventListener("load", () => {
-      let tl = gsap.timeline();
+  gsap.set([".intro", "#aldo", ".desc", ".buttons a"], { opacity: 0, y: 30 });
 
-      // animasi loading icon (loop)
-      gsap.to(".loading-icon", {
-        rotation: 360,
-        duration: 1.5,
-        repeat: -1,
-        ease: "linear"
-      });
+  const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
 
-      // Setelah delay, jalankan animasi tirai
-      tl.to(".loading-text", {opacity: 0, duration: 0.5})
-        .to(".curtain.left", {x: "-100%", duration: 1, ease: "power4.inOut"}, "-=0.3")
-        .to(".curtain.right", {x: "100%", duration: 1, ease: "power4.inOut"}, "-=1")
-        .to(".loader", {opacity: 0, duration: 0.5, onComplete: () => {
-          document.querySelector(".loader").style.display = "none";
-          document.querySelector(".content").style.display = "block";
-          document.body.style.overflow = "auto"; // aktifkan scroll lagi
-        }});
-    });
+  tl.to(".intro", { opacity: 1, y: 0 })
+    .to("#aldo", { opacity: 1, y: 0 }, "-=0.6")
+    .to(".desc", { opacity: 1, y: 0 }, "-=0.6")
+    .to(".buttons a", { opacity: 1, y: 0, stagger: 0.1 }, "-=1.5");
+});

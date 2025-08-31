@@ -15,9 +15,9 @@ resizeCanvas();
 // Particle properties
 let particles = [];
 let particleCount = window.innerWidth <= 768 ? 30 : 70;
-const particleColor = 'rgba(173, 216, 230, 0.8)';
-const connectionColor = 'rgba(173, 216, 230, 0.3)';
-const connectionDistance = 150;
+const particleColor = 'rgba(173, 216, 230, 0.25)';
+const connectionColor = 'rgba(173, 216, 230, 0.2)';
+const connectionDistance = 100;
 
 // Particle class
 class Particle {
@@ -47,7 +47,7 @@ class Particle {
 
 function createParticles() {
     particles = [];
-    particleCount = window.innerWidth <= 768 ? 30 : 70;
+    particleCount = window.innerWidth <= 768 ? 30 : 80;
     for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
     }
